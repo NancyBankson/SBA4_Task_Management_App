@@ -3,10 +3,11 @@ let newTask = document.getElementById("new-task-el");
 let newCategory = document.getElementById("new-category-el");
 let newDate = document.getElementById("new-date-el");
 let newStatus = document.getElementById("new-status-el");
-let addButton = document.getElementById("button-el");
+let addButton = document.getElementById("add-button-el");
+let overdueButton = document.getElementById("overdue-button-el")
 let taskTable = document.getElementById("task-table-el");
-const today = new Date();
-console.log(today);
+const todaymilli = Date.now();
+console.log(todaymilli);
 
 // let dummyObject = {
 //     Task: "imatryintotype",
@@ -46,13 +47,52 @@ addButton.addEventListener("click", function () {
     newDate.value = "";
     newStatus.value = "";
 })
-
-// **********Functions*****************************
-function compareDate(objectDate) {
-    if (objectDate > today) {
-        console.log("overdue");
+overdueButton.addEventListener("click", function () {
+    if (taskTable) {
+        taskTable.innerHTML = "";
     }
-    else {
-        console.log("okay");
+    let tableObject = {};
+    console.log(taskDatabase.length);
+
+    for (let i = 0; i < taskDatabase.length; i++) {
+        console.log("im running " + i)
+        let newRow = document.createElement("tr")
+        taskTable.appendChild(newRow)
+        tableObject.Task = taskDatabase[i].Task;
+        let displayTask = document.createElement("td");
+        displayTask.innerText = tableObject.Task;
+        newRow.appendChild(displayTask);
+        tableObject.Category = taskDatabase[i].Category;
+        let displayCategory = document.createElement("td");
+        displayCategory.innerText = tableObject.Category;
+        newRow.appendChild(displayCategory);
+        tableObject.Date = taskDatabase[i].Date;
+        dateToCompare = new Date(taskDatabase[i].Date)
+        console.log(dateToCompare)
+        let displayDate = document.createElement("td");
+        displayDate.innerText = tableObject.Date;
+        newRow.appendChild(displayDate);
+        tableObject.Status = taskDatabase[i].Status;
+        if (dateToCompare <= todaymilli)  {
+            console.log("found one")
+            tableObject.Status = "Overdue"
+        }
+        let displayStatus = document.createElement("td");
+        displayStatus.innerText = tableObject.Status;
+        newRow.appendChild(displayStatus);
+        console.log(taskDatabase);
+        console.log(i)
+
     }
 }
+)
+
+// **********Functions*****************************
+
+// for (let i = 0; i < taskDatabase.length; i++) {
+//     let dateToCompare = taskDatabase[i].Date;
+//     if (dateToCompare > today) {
+//         console.log("overdue");
+//         taskDatabase[i] = "Overdue"
+//     }
+// }
