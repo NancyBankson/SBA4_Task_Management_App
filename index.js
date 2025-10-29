@@ -4,7 +4,7 @@ let newCategory = document.getElementById("new-category-el");
 let newDate = document.getElementById("new-date-el");
 let newStatus = document.getElementById("new-status-el");
 let addButton = document.getElementById("button-el");
-let tableRow = document.getElementById("table-row-el")
+let taskTable = document.getElementById("task-table-el")
 
 // let dummyObject = {
 //     Task: "imatryintotype",
@@ -19,22 +19,24 @@ let taskDatabase = [];
 // **********Event listeners**********************
 addButton.addEventListener("click", function () {
     let tableObject = {};
+    let newRow = document.createElement("tr")
+    taskTable.appendChild(newRow)
     tableObject.Task = newTask.value;
     let displayTask = document.createElement("td");
     displayTask.innerText = tableObject.Task;
-    tableRow.appendChild(displayTask);
+    newRow.appendChild(displayTask);
     tableObject.Category = newCategory.value;
     let displayCategory = document.createElement("td");
     displayCategory.innerText = tableObject.Category;
-    tableRow.appendChild(displayCategory);
+    newRow.appendChild(displayCategory);
     tableObject.Date = newDate.value;
     let displayDate = document.createElement("td");
     displayDate.innerText = tableObject.Date;
-    tableRow.appendChild(displayDate);
+    newRow.appendChild(displayDate);
     tableObject.Status = newStatus.value;
     let displayStatus = document.createElement("td");
     displayStatus.innerText = tableObject.Status;
-    tableRow.appendChild(displayStatus);
+    newRow.appendChild(displayStatus);
     taskDatabase.push(tableObject)
     console.log(taskDatabase)
 })
