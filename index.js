@@ -37,6 +37,10 @@ addButton.addEventListener("click", function () {
     let displayStatus = document.createElement("td");
     displayStatus.innerText = tableObject.Status;
     newRow.appendChild(displayStatus);
-    taskDatabase.push(tableObject)
-    console.log(taskDatabase)
+    taskDatabase.push(tableObject);
+    console.log(taskDatabase);
+    newTask.value = "";
+    newCategory.value = "";
+    newDate.value = "";
+    newStatus.value = "";
 })
