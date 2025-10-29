@@ -4,7 +4,9 @@ let newCategory = document.getElementById("new-category-el");
 let newDate = document.getElementById("new-date-el");
 let newStatus = document.getElementById("new-status-el");
 let addButton = document.getElementById("button-el");
-let taskTable = document.getElementById("task-table-el")
+let taskTable = document.getElementById("task-table-el");
+const today = new Date();
+console.log(today);
 
 // let dummyObject = {
 //     Task: "imatryintotype",
@@ -44,3 +46,13 @@ addButton.addEventListener("click", function () {
     newDate.value = "";
     newStatus.value = "";
 })
+
+// **********Functions*****************************
+function compareDate(objectDate) {
+    if (objectDate > today) {
+        console.log("overdue");
+    }
+    else {
+        console.log("okay");
+    }
+}
