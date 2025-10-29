@@ -10,31 +10,59 @@
 </head>
 
 <body>
-    <div>
-        <table>
+    <div class="container">
+        <table id="task-table">
             <tr>
-                <th>Company</th>
-                <th>Contact</th>
-                <th>Country</th>
+                <th>Task Name</th>
+                <th>Category</th>
+                <th>Due Date</th>
+                <th>Status</th>
             </tr>
             <tr>
                 <td>Alfreds Futterkiste</td>
                 <td>Maria Anders</td>
                 <td>Germany</td>
+                <td>TBD</td>
             </tr>
             <tr>
                 <td>Centro comercial Moctezuma</td>
                 <td>Francisco Chang</td>
                 <td>Mexico</td>
+                <td>TBS</td>
+            </tr>
+            <tr>
+                <td><input id="new-task-el" type="text" placeholder="New Task"/></td>
+                <td>
+                    <select id="new-category-el">
+                        <option value="Work">Work</option>
+                        <option value="Volunteer">Volunteer</option>
+                        <option value="Family">Family</option>
+                        <option value="Personal">Personal</option>
+                    </select>
+                </td>
+                <td><input id="new-date-el"type="text" placeholder="11/01/2025"/></td>
+                <td>
+                    <select id="new-status-el">
+                        <option value="In Progress">In Progress</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Overdue">Overdue</option>
+                    </select>
+                </td>
             </tr>
         </table>
     </div>
+    <button id="button-el">Add task</button>
     <div>
-        <form>
+        <!--<form>
             <label id="task-name">Task Name</label>
             <input type="text" />
             <label id="category">Category</label>
-            <input type="text" />
+            <select>
+                <option value="Work">Work</option>
+                <option value="Volunteer">Volunteer</option>
+                <option value="Family">Family</option>
+                <option value="Personal">Personal</option>
+            </select>
             <label id="deadline">Due Date</label>
             <input type="text" />
             <label id="status">Status</label>
@@ -45,6 +73,8 @@
             </select>
             <button>Submit</button>
         </form>
+        -->
+        
     </div>
 
 

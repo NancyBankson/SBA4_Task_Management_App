@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 20px;
+}
+
+.task-table {
+    background-color: light gray;
+    margin: 20px 20px;
+    display: flex;
+}
+
+.task-table>tr {
+    min-height: 50px;
+    gap: 20px;
+}
+
+th,
+td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+   min-width: 200px;
+}
