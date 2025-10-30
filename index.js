@@ -104,7 +104,7 @@ categoryButton.addEventListener("click", function () {
     let tableObject = {};
     console.log(taskDatabase.length);
 
-    compareCategory = categoryFilter.value;
+    let compareCategory = categoryFilter.value;
     console.log(compareCategory)
 
     for (let i = 0; i < taskDatabase.length; i++) {
@@ -115,29 +115,52 @@ categoryButton.addEventListener("click", function () {
         console.log([i] + tableObject.Category)
         if (compareCategory === tableObject.Category) {
             let newRow = document.createElement("tr")
-            taskTable.appendChild(newRow)
-
+            taskTable.appendChild(newRow);
             let displayTask = document.createElement("td");
             displayTask.innerText = tableObject.Task;
             newRow.appendChild(displayTask);
-
             let displayCategory = document.createElement("td");
             displayCategory.innerText = tableObject.Category;
             newRow.appendChild(displayCategory);
-
             let displayDate = document.createElement("td");
             displayDate.innerText = tableObject.Date;
             newRow.appendChild(displayDate);
-
             let displayStatus = document.createElement("td");
             displayStatus.innerText = tableObject.Status;
-            newRow.appendChild(displayStatus);
-        }
-
-        console.log(taskDatabase);
-        console.log(i)
+            newRow.appendChild(displayStatus);        } 
 
     }
 })
-// **********Functions*****************************
+statusButton.addEventListener("click", function () {
+    if (taskTable) {
+        taskTable.innerHTML = "";
+    }
+    let tableObject = {};
+    console.log(taskDatabase.length);
 
+    let compareStatus = statusFilter.value;
+
+    for (let i = 0; i < taskDatabase.length; i++) {
+        tableObject.Task = taskDatabase[i].Task;
+        tableObject.Category = taskDatabase[i].Category;
+        tableObject.Date = taskDatabase[i].Date;
+        tableObject.Status = taskDatabase[i].Status;
+        console.log([i] + tableObject.Category)
+        if (compareStatus === tableObject.Status) {
+            let newRow = document.createElement("tr")
+            taskTable.appendChild(newRow);
+            let displayTask = document.createElement("td");
+            displayTask.innerText = tableObject.Task;
+            newRow.appendChild(displayTask);
+            let displayCategory = document.createElement("td");
+            displayCategory.innerText = tableObject.Category;
+            newRow.appendChild(displayCategory);
+            let displayDate = document.createElement("td");
+            displayDate.innerText = tableObject.Date;
+            newRow.appendChild(displayDate);
+            let displayStatus = document.createElement("td");
+            displayStatus.innerText = tableObject.Status;
+            newRow.appendChild(displayStatus);        } 
+
+    }
+})
