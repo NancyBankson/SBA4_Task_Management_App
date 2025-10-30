@@ -11,8 +11,8 @@ let categoryButton = document.getElementById("category-button-el")
 let statusFilter = document.getElementById("filter-status-el")
 let statusButton = document.getElementById("status-button-el")
 const todaymilli = Date.now();
-console.log(todaymilli);
 
+// For testing
 // let dummyObject = {
 //     Task: "imatryintotype",
 //     Category: "Work",
@@ -20,6 +20,7 @@ console.log(todaymilli);
 //     Status: "Complete",
 // }
 let taskDatabase = [];
+// For testing
 // taskDatabase.push(dummyObject);
 // console.log(taskDatabase);
 
@@ -40,19 +41,19 @@ addButton.addEventListener("click", function () {
     let displayDate = document.createElement("td");
     displayDate.innerText = tableObject.Date;
     newRow.appendChild(displayDate);
-
     tableObject.Status = newStatus.value;
     let displayStatus = document.createElement("td");
     displayStatus.innerText = tableObject.Status;
     newRow.appendChild(displayStatus);
+    // Attempted to create a select element so that status could be updated.  The drop-down list displayed correctly, but the value was not visible to user.
     // let displayDropdown = document.createElement("select");
     //displayDropdown.innerHTML = '<option value="">--Status--</option><option value=" In Progress">In Progress</option><option value="Completed">Completed</option><option value="Overdue">Overdue</option>>';
     //displayStatus.appendChild(displayDropdown);
 
+    // Attempted to fill the drop-down list with current value, does not work and prevents drop-down list from showing.
     // displayDropdown.innerText = tableObject.Status;
 
     taskDatabase.push(tableObject);
-    console.log(taskDatabase);
     newTask.value = "";
     newCategory.value = "";
     newDate.value = "";
@@ -63,10 +64,7 @@ overdueButton.addEventListener("click", function () {
         taskTable.innerHTML = "";
     }
     let tableObject = {};
-    console.log(taskDatabase.length);
-
     for (let i = 0; i < taskDatabase.length; i++) {
-        console.log("im running " + i)
         let newRow = document.createElement("tr")
         taskTable.appendChild(newRow)
         tableObject.Task = taskDatabase[i].Task;
@@ -78,22 +76,18 @@ overdueButton.addEventListener("click", function () {
         displayCategory.innerText = tableObject.Category;
         newRow.appendChild(displayCategory);
         tableObject.Date = taskDatabase[i].Date;
-        dateToCompare = new Date(taskDatabase[i].Date)
-        console.log(dateToCompare)
+        dateToCompare = new Date(taskDatabase[i].Date);
         let displayDate = document.createElement("td");
         displayDate.innerText = tableObject.Date;
         newRow.appendChild(displayDate);
         tableObject.Status = taskDatabase[i].Status;
-        if (dateToCompare <= todaymilli) {
-            console.log("found one")
-            tableObject.Status = "Overdue"
+        if ((dateToCompare <= todaymilli) && (tableObject.Status != "Completed")) {
+            tableObject.Status = "Overdue";
+            taskDatabase[i].Status = "Overdue";
         }
         let displayStatus = document.createElement("td");
         displayStatus.innerText = tableObject.Status;
         newRow.appendChild(displayStatus);
-        console.log(taskDatabase);
-        console.log(i)
-
     }
 }
 )
@@ -102,17 +96,12 @@ categoryButton.addEventListener("click", function () {
         taskTable.innerHTML = "";
     }
     let tableObject = {};
-    console.log(taskDatabase.length);
-
     let compareCategory = categoryFilter.value;
-    console.log(compareCategory)
-
     for (let i = 0; i < taskDatabase.length; i++) {
         tableObject.Task = taskDatabase[i].Task;
         tableObject.Category = taskDatabase[i].Category;
         tableObject.Date = taskDatabase[i].Date;
         tableObject.Status = taskDatabase[i].Status;
-        console.log([i] + tableObject.Category)
         if (compareCategory === tableObject.Category) {
             let newRow = document.createElement("tr")
             taskTable.appendChild(newRow);
@@ -127,8 +116,8 @@ categoryButton.addEventListener("click", function () {
             newRow.appendChild(displayDate);
             let displayStatus = document.createElement("td");
             displayStatus.innerText = tableObject.Status;
-            newRow.appendChild(displayStatus);        } 
-
+            newRow.appendChild(displayStatus);
+        }
     }
 })
 statusButton.addEventListener("click", function () {
@@ -136,16 +125,12 @@ statusButton.addEventListener("click", function () {
         taskTable.innerHTML = "";
     }
     let tableObject = {};
-    console.log(taskDatabase.length);
-
     let compareStatus = statusFilter.value;
-
     for (let i = 0; i < taskDatabase.length; i++) {
         tableObject.Task = taskDatabase[i].Task;
         tableObject.Category = taskDatabase[i].Category;
         tableObject.Date = taskDatabase[i].Date;
         tableObject.Status = taskDatabase[i].Status;
-        console.log([i] + tableObject.Category)
         if (compareStatus === tableObject.Status) {
             let newRow = document.createElement("tr")
             taskTable.appendChild(newRow);
@@ -160,7 +145,7 @@ statusButton.addEventListener("click", function () {
             newRow.appendChild(displayDate);
             let displayStatus = document.createElement("td");
             displayStatus.innerText = tableObject.Status;
-            newRow.appendChild(displayStatus);        } 
-
+            newRow.appendChild(displayStatus);
+        }
     }
 })
