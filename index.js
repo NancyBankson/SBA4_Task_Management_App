@@ -43,12 +43,28 @@ addButton.addEventListener("click", function () {
     newRow.appendChild(displayDate);
     tableObject.Status = newStatus.value;
     let displayStatus = document.createElement("td");
-    displayStatus.innerText = tableObject.Status;
+    // displayStatus.innerText = tableObject.Status;
     newRow.appendChild(displayStatus);
     // Attempted to create a select element so that status could be updated.  The drop-down list displayed correctly, but the value was not visible to user.
-    // let displayDropdown = document.createElement("select");
-    //displayDropdown.innerHTML = '<option value="">--Status--</option><option value=" In Progress">In Progress</option><option value="Completed">Completed</option><option value="Overdue">Overdue</option>>';
-    //displayStatus.appendChild(displayDropdown);
+    let displayDropdown = document.createElement("select");
+    // displayDropdown.innerHTML = '<option value="">--Status--</option><option value=" In Progress">In Progress</option><option value="Completed">Completed</option><option value="Overdue">Overdue</option>>';
+    displayStatus.appendChild(displayDropdown);
+    const testStatus = ["In Progress", "Completed", "Overdue"]
+    for (let i = 0; i < testStatus.length; i++) {
+        if (testStatus[i] === tableObject.Status) {
+            let option = document.createElement("option");
+            option.value = testStatus[i];
+            option.textContent = testStatus[i];
+            option.setAttribute("selected", "selected")
+            displayDropdown.appendChild(option);
+        }
+        else {
+            let option = document.createElement("option");
+            option.value = testStatus[i];
+            option.textContent = testStatus[i];
+            displayDropdown.appendChild(option);
+        }        
+    }
 
     // Attempted to fill the drop-down list with current value, does not work and prevents drop-down list from showing.
     // displayDropdown.innerText = tableObject.Status;
