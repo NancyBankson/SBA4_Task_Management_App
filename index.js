@@ -176,7 +176,7 @@ categoryButton.addEventListener("click", function () {
         tableObject.Category = taskDatabase[i].Category;
         tableObject.Date = taskDatabase[i].Date;
         tableObject.Status = taskDatabase[i].Status;
-        if (compareCategory === tableObject.Category) {
+        if ((compareCategory === tableObject.Category) || (compareCategory === "")) {
             let newRow = document.createElement("tr")
             taskTable.appendChild(newRow);
             let displayTask = document.createElement("td");
@@ -240,7 +240,7 @@ statusButton.addEventListener("click", function () {
         tableObject.Category = taskDatabase[i].Category;
         tableObject.Date = taskDatabase[i].Date;
         tableObject.Status = taskDatabase[i].Status;
-        if (compareStatus === tableObject.Status) {
+        if ((compareStatus === tableObject.Status) || (compareStatus === "")) {
             let newRow = document.createElement("tr")
             taskTable.appendChild(newRow);
             let displayTask = document.createElement("td");
