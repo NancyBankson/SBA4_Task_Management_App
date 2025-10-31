@@ -1,5 +1,6 @@
 body {
     text-align: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 .container {
     display: flex;
@@ -9,11 +10,6 @@ body {
     gap: 20px;
 }
 
-.task-table {
-    background-color: light gray;
-    margin: 20px 20px;
-    display: flex;
-}
 
 .task-table>tr {
     min-height: 50px;
@@ -22,8 +18,25 @@ body {
 
 th,
 td {
-    border: 1px solid #ccc;
+    font-size: 1.1rem;
+    border: 1px solid #4d4730;
     padding: 8px;
     text-align: left;
-   min-width: 200px;
+    min-width: 200px;
+}
+
+button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    background-color: #00998a;
+    color: white;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 2px 2px 4px #00796d;
+}
+.drop-down {
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 4px #004377;
 }
