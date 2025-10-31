@@ -29,43 +29,22 @@ addButton.addEventListener("click", function () {
     let tableObject = {};
     let newRow = document.createElement("tr")
     taskTable.appendChild(newRow)
+
     tableObject.Task = newTask.value;
     let displayTask = document.createElement("td");
     displayTask.innerText = tableObject.Task;
     newRow.appendChild(displayTask);
+
     tableObject.Category = newCategory.value;
-    // Replaced this section with dropdown selector
-    // let displayCategory = document.createElement("td");
-    // displayCategory.innerText = tableObject.Category;
-    // newRow.appendChild(displayCategory);
     let displayCategory = document.createElement("td");
-    // Replaced this section with dropdown selector
-    // displayStatus.innerText = tableObject.Status;
+    displayCategory.innerText = tableObject.Category;
     newRow.appendChild(displayCategory);
-    let displayCatDropdown = document.createElement("select");
-    // Replaced this section with selected attribute option
-    // displayDropdown.innerHTML = '<option value="">--Status--</option><option value=" In Progress">In Progress</option><option value="Completed">Completed</option><option value="Overdue">Overdue</option>>';
-    displayCategory.appendChild(displayCatDropdown);
-    const testCategory = ["Work", "Volunteer", "Family", "Personal"]
-    for (let i = 0; i < testCategory.length; i++) {
-        if (testCategory[i] === tableObject.Category) {
-            let option = document.createElement("option");
-            option.value = testCategory[i];
-            option.textContent = testCategory[i];
-            option.setAttribute("selected", "selected")
-            displayCatDropdown.appendChild(option);
-        }
-        else {
-            let option = document.createElement("option");
-            option.value = testCategory[i];
-            option.textContent = testCategory[i];
-            displayCatDropdown.appendChild(option);
-        }
-    }
+
     tableObject.Date = newDate.value;
     let displayDate = document.createElement("td");
     displayDate.innerText = tableObject.Date;
     newRow.appendChild(displayDate);
+
     tableObject.Status = newStatus.value;
     let displayStatus = document.createElement("td");
     // Removed with dropdown selector
@@ -99,6 +78,7 @@ addButton.addEventListener("click", function () {
     newDate.value = "";
     newStatus.value = "";
 })
+
 overdueButton.addEventListener("click", function () {
     if (taskTable) {
         taskTable.innerHTML = "";
@@ -107,31 +87,17 @@ overdueButton.addEventListener("click", function () {
     for (let i = 0; i < taskDatabase.length; i++) {
         let newRow = document.createElement("tr")
         taskTable.appendChild(newRow)
+
         tableObject.Task = taskDatabase[i].Task;
         let displayTask = document.createElement("td");
         displayTask.innerText = tableObject.Task;
         newRow.appendChild(displayTask);
+
         tableObject.Category = taskDatabase[i].Category;
         let displayCategory = document.createElement("td");
+        displayCategory.innerText = tableObject.Category;
         newRow.appendChild(displayCategory);
-        let displayCatDropdown = document.createElement("select");
-        displayCategory.appendChild(displayCatDropdown);
-        const testCategory = ["Work", "Volunteer", "Family", "Personal"]
-        for (let i = 0; i < testCategory.length; i++) {
-            if (testCategory[i] === tableObject.Category) {
-                let option = document.createElement("option");
-                option.value = testCategory[i];
-                option.textContent = testCategory[i];
-                option.setAttribute("selected", "selected")
-                displayCatDropdown.appendChild(option);
-            }
-            else {
-                let option = document.createElement("option");
-                option.value = testCategory[i];
-                option.textContent = testCategory[i];
-                displayCatDropdown.appendChild(option);
-            }
-        }
+
         tableObject.Date = taskDatabase[i].Date;
         dateToCompare = new Date(taskDatabase[i].Date);
         let displayDate = document.createElement("td");
@@ -165,6 +131,7 @@ overdueButton.addEventListener("click", function () {
     }
 }
 )
+
 categoryButton.addEventListener("click", function () {
     if (taskTable) {
         taskTable.innerHTML = "";
@@ -179,33 +146,19 @@ categoryButton.addEventListener("click", function () {
         if ((compareCategory === tableObject.Category) || (compareCategory === "")) {
             let newRow = document.createElement("tr")
             taskTable.appendChild(newRow);
+
             let displayTask = document.createElement("td");
             displayTask.innerText = tableObject.Task;
             newRow.appendChild(displayTask);
+
             let displayCategory = document.createElement("td");
+            displayCategory.innerText = tableObject.Category;
             newRow.appendChild(displayCategory);
-            let displayCatDropdown = document.createElement("select");
-            displayCategory.appendChild(displayCatDropdown);
-            const testCategory = ["Work", "Volunteer", "Family", "Personal"]
-            for (let i = 0; i < testCategory.length; i++) {
-                if (testCategory[i] === tableObject.Category) {
-                    let option = document.createElement("option");
-                    option.value = testCategory[i];
-                    option.textContent = testCategory[i];
-                    option.setAttribute("selected", "selected")
-                    displayCatDropdown.appendChild(option);
-                }
-                else {
-                    let option = document.createElement("option");
-                    option.value = testCategory[i];
-                    option.textContent = testCategory[i];
-                    displayCatDropdown.appendChild(option);
-                }
-            }
 
             let displayDate = document.createElement("td");
             displayDate.innerText = tableObject.Date;
             newRow.appendChild(displayDate);
+
             let displayStatus = document.createElement("td");
             newRow.appendChild(displayStatus);
             let displayDropdown = document.createElement("select");
@@ -229,6 +182,7 @@ categoryButton.addEventListener("click", function () {
         }
     }
 })
+
 statusButton.addEventListener("click", function () {
     if (taskTable) {
         taskTable.innerHTML = "";
@@ -243,32 +197,19 @@ statusButton.addEventListener("click", function () {
         if ((compareStatus === tableObject.Status) || (compareStatus === "")) {
             let newRow = document.createElement("tr")
             taskTable.appendChild(newRow);
+
             let displayTask = document.createElement("td");
             displayTask.innerText = tableObject.Task;
             newRow.appendChild(displayTask);
+
             let displayCategory = document.createElement("td");
+            displayCategory.innerText = tableObject.Category;
             newRow.appendChild(displayCategory);
-            let displayCatDropdown = document.createElement("select");
-            displayCategory.appendChild(displayCatDropdown);
-            const testCategory = ["Work", "Volunteer", "Family", "Personal"]
-            for (let i = 0; i < testCategory.length; i++) {
-                if (testCategory[i] === tableObject.Category) {
-                    let option = document.createElement("option");
-                    option.value = testCategory[i];
-                    option.textContent = testCategory[i];
-                    option.setAttribute("selected", "selected")
-                    displayCatDropdown.appendChild(option);
-                }
-                else {
-                    let option = document.createElement("option");
-                    option.value = testCategory[i];
-                    option.textContent = testCategory[i];
-                    displayCatDropdown.appendChild(option);
-                }
-            }
+
             let displayDate = document.createElement("td");
             displayDate.innerText = tableObject.Date;
             newRow.appendChild(displayDate);
+
             let displayStatus = document.createElement("td");
             newRow.appendChild(displayStatus);
             let displayDropdown = document.createElement("select");
