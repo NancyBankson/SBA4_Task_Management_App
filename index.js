@@ -41,11 +41,15 @@ addButton.addEventListener("click", function () {
     newRow.appendChild(displayCategory);
 
     tableObject.Date = newDate.value;
+    dateToCompare = new Date(tableObject.Date);
     let displayDate = document.createElement("td");
     displayDate.innerText = tableObject.Date;
     newRow.appendChild(displayDate);
 
     tableObject.Status = newStatus.value;
+    if ((dateToCompare <= todaymilli) && (tableObject.Status != "Completed")) {
+        tableObject.Status = "Overdue";
+    }
     let displayStatus = document.createElement("td");
     // Removed with dropdown selector
     // displayStatus.innerText = tableObject.Status;
@@ -79,58 +83,60 @@ addButton.addEventListener("click", function () {
     newStatus.value = "";
 })
 
-overdueButton.addEventListener("click", function () {
-    if (taskTable) {
-        taskTable.innerHTML = "";
-    }
-    let tableObject = {};
-    for (let i = 0; i < taskDatabase.length; i++) {
-        let newRow = document.createElement("tr")
-        taskTable.appendChild(newRow)
+// Updated add event listener to automatically update overdue items, check button is no longer needed
+// overdueButton.addEventListener("click", function () {
+//     if (taskTable) {
+//         taskTable.innerHTML = "";
+//     }
+//     let tableObject = {};
+//     for (let i = 0; i < taskDatabase.length; i++) {
+//         let newRow = document.createElement("tr")
+//         taskTable.appendChild(newRow)
 
-        tableObject.Task = taskDatabase[i].Task;
-        let displayTask = document.createElement("td");
-        displayTask.innerText = tableObject.Task;
-        newRow.appendChild(displayTask);
+//         tableObject.Task = taskDatabase[i].Task;
+//         let displayTask = document.createElement("td");
+//         displayTask.innerText = tableObject.Task;
+//         newRow.appendChild(displayTask);
 
-        tableObject.Category = taskDatabase[i].Category;
-        let displayCategory = document.createElement("td");
-        displayCategory.innerText = tableObject.Category;
-        newRow.appendChild(displayCategory);
+//         tableObject.Category = taskDatabase[i].Category;
+//         let displayCategory = document.createElement("td");
+//         displayCategory.innerText = tableObject.Category;
+//         newRow.appendChild(displayCategory);
 
-        tableObject.Date = taskDatabase[i].Date;
-        dateToCompare = new Date(taskDatabase[i].Date);
-        let displayDate = document.createElement("td");
-        displayDate.innerText = tableObject.Date;
-        newRow.appendChild(displayDate);
-        tableObject.Status = taskDatabase[i].Status;
-        if ((dateToCompare <= todaymilli) && (tableObject.Status != "Completed")) {
-            tableObject.Status = "Overdue";
-            taskDatabase[i].Status = "Overdue";
-        }
-        let displayStatus = document.createElement("td");
-        newRow.appendChild(displayStatus);
-        let displayDropdown = document.createElement("select");
-        displayStatus.appendChild(displayDropdown);
-        const testStatus = ["In Progress", "Completed", "Overdue"]
-        for (let i = 0; i < testStatus.length; i++) {
-            if (testStatus[i] === tableObject.Status) {
-                let option = document.createElement("option");
-                option.value = testStatus[i];
-                option.textContent = testStatus[i];
-                option.setAttribute("selected", "selected")
-                displayDropdown.appendChild(option);
-            }
-            else {
-                let option = document.createElement("option");
-                option.value = testStatus[i];
-                option.textContent = testStatus[i];
-                displayDropdown.appendChild(option);
-            }
-        }
-    }
-}
-)
+//         tableObject.Date = taskDatabase[i].Date;
+//         dateToCompare = new Date(taskDatabase[i].Date);
+//         let displayDate = document.createElement("td");
+//         displayDate.innerText = tableObject.Date;
+//         newRow.appendChild(displayDate);
+
+//         tableObject.Status = taskDatabase[i].Status;
+//         if ((dateToCompare <= todaymilli) && (tableObject.Status != "Completed")) {
+//             tableObject.Status = "Overdue";
+//             taskDatabase[i].Status = "Overdue";
+//         }
+//         let displayStatus = document.createElement("td");
+//         newRow.appendChild(displayStatus);
+//         let displayDropdown = document.createElement("select");
+//         displayStatus.appendChild(displayDropdown);
+//         const testStatus = ["In Progress", "Completed", "Overdue"]
+//         for (let i = 0; i < testStatus.length; i++) {
+//             if (testStatus[i] === tableObject.Status) {
+//                 let option = document.createElement("option");
+//                 option.value = testStatus[i];
+//                 option.textContent = testStatus[i];
+//                 option.setAttribute("selected", "selected")
+//                 displayDropdown.appendChild(option);
+//             }
+//             else {
+//                 let option = document.createElement("option");
+//                 option.value = testStatus[i];
+//                 option.textContent = testStatus[i];
+//                 displayDropdown.appendChild(option);
+//             }
+//         }
+//     }
+// }
+// )
 
 categoryButton.addEventListener("click", function () {
     if (taskTable) {
