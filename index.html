@@ -31,41 +31,56 @@
     <!-- Updated add event listener so that check for overdue button is not needed, update is automatic -->
     <!-- <button id="overdue-button-el">Check for overdue tasks</button> -->
     <div class="container">
-        <table>
-            <tr>
-                <th>Task Number</th>
-                <th>Task Name</th>
-                <th>Category</th>
-                <th>Due Date</th>
-                <th>Status</th>
-            </tr>
-            <tbody id="task-table-el"></tbody>
-            <tr>
-                <td></td>
-                <td><input id="new-task-el" type="text" placeholder="New Task" /></td>
-                <td>
-                    <select id="new-category-el">
-                        <option value="">--Category--</option>
-                        <option value="Work">Work</option>
-                        <option value="Volunteer">Volunteer</option>
-                        <option value="Family">Family</option>
-                        <option value="Personal">Personal</option>
-                    </select>
-                </td>
-                <td><input id="new-date-el" type="date" placeholder="MM/DD/YYYY" /></td>
-                <td>
-                    <select id="new-status-el"">
-                        <option value="">--Status--</option>
-                        <option value=" In Progress">In Progress</option>
-                        <option value="Completed">Completed</option>
-                        <option value="Overdue">Overdue</option>
-                    </select>
-                </td>
-            </tr>
-        </table>
-        <button id="add-button-el">Add task</button>
-       
+        <div>
+            <table>
+                <tr>
+                    <th>Task Number</th>
+                    <th>Task Name</th>
+                    <th>Category</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                </tr>
+                <tbody id="task-table-el"></tbody>
+                <tr>
+                    <td></td>
+                    <td><input id="new-task-el" type="text" placeholder="New Task" /></td>
+                    <td>
+                        <select id="new-category-el">
+                            <option value="">--Category--</option>
+                            <option value="Work">Work</option>
+                            <option value="Volunteer">Volunteer</option>
+                            <option value="Family">Family</option>
+                            <option value="Personal">Personal</option>
+                        </select>
+                    </td>
+                    <td><input id="new-date-el" type="date" placeholder="MM/DD/YYYY" /></td>
+                    <td>
+                        <select id="new-status-el"">
+                            <option value="">--Status--</option>
+                            <option value=" In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Overdue">Overdue</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <button id="add-button-el">Add task</button>
+        </div>
+        <div>
+            <h2>Update task status</h2>
+            <label>Task Number</label>
+            <input id="update-number-el" type="text" />
+            <label>Status</label>
+            <select id="update-status-el">
+                <option value="">--Status--</option>
+                <option value=" In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+                <option value="Overdue">Overdue</option>
+            </select>
+            <button id="update-button-el">Update</button>
+        </div>
     </div>
+
 </body>
 
 </html>

@@ -4,12 +4,15 @@ let newCategory = document.getElementById("new-category-el");
 let newDate = document.getElementById("new-date-el");
 let newStatus = document.getElementById("new-status-el");
 let addButton = document.getElementById("add-button-el");
-let overdueButton = document.getElementById("overdue-button-el")
+let overdueButton = document.getElementById("overdue-button-el");
 let taskTable = document.getElementById("task-table-el");
-let categoryFilter = document.getElementById("filter-category-el")
-let categoryButton = document.getElementById("category-button-el")
-let statusFilter = document.getElementById("filter-status-el")
-let statusButton = document.getElementById("status-button-el")
+let categoryFilter = document.getElementById("filter-category-el");
+let categoryButton = document.getElementById("category-button-el");
+let statusFilter = document.getElementById("filter-status-el");
+let statusButton = document.getElementById("status-button-el");
+let updateNumber = document.getElementById("update-number-el");
+let updateStatus = document.getElementById("update-status-el");
+let updateButton = document.getElementById("update-button-el");
 const todaymilli = Date.now();
 let rowNum = 1;
 let colNum = 1;
@@ -291,6 +294,76 @@ statusButton.addEventListener("click", function () {
                     displayDropdown.appendChild(option);
                 }
             }
+        }
+    }
+})
+
+updateButton.addEventListener("click", function () {
+    rowNum = 1;
+    if (taskTable) {
+        taskTable.innerHTML = "";
+    }
+    let tableObject = {};
+    let targetTaskNumber = parseInt(updateNumber.value);
+    targetTaskNumber--;
+    taskDatabase[targetTaskNumber].Status = updateStatus.value;
+    for (let i = 0; i < taskDatabase.length; i++) {
+        tableObject.Number = taskDatabase[i].Number;
+        tableObject.Task = taskDatabase[i].Task;
+        tableObject.Category = taskDatabase[i].Category;
+        tableObject.Date = taskDatabase[i].Date;
+        tableObject.Status = taskDatabase[i].Status;
+
+        let newRow = document.createElement("tr")
+        taskTable.appendChild(newRow);
+
+        let displayNumber = document.createElement("td");
+        displayNumber.innerText = tableObject.Number;
+        displayNumber.id = (rowNum, "+", colNum);
+        newRow.appendChild(displayNumber);
+        colNum++;
+
+        let displayTask = document.createElement("td");
+        displayTask.innerText = tableObject.Task;
+        displayTask.id = (rowNum, "+", colNum);
+        newRow.appendChild(displayTask);
+        colNum++;
+
+        let displayCategory = document.createElement("td");
+        displayCategory.innerText = tableObject.Category;
+        displayCategory.id = (rowNum, "+", colNum);
+        newRow.appendChild(displayCategory);
+        colNum++;
+
+        let displayDate = document.createElement("td");
+        displayDate.innerText = tableObject.Date;
+        displayDate.id = (rowNum, "+", colNum);
+        newRow.appendChild(displayDate);
+        colNum++;
+
+        let displayStatus = document.createElement("td");
+        displayStatus.id = (rowNum, "+", colNum);
+        newRow.appendChild(displayStatus);
+        rowNum++;
+        colNum = 1;
+        let displayDropdown = document.createElement("select");
+        displayStatus.appendChild(displayDropdown);
+        const testStatus = ["In Progress", "Completed", "Overdue"]
+        for (let i = 0; i < testStatus.length; i++) {
+            if (testStatus[i] === tableObject.Status) {
+                let option = document.createElement("option");
+                option.value = testStatus[i];
+                option.textContent = testStatus[i];
+                option.setAttribute("selected", "selected")
+                displayDropdown.appendChild(option);
+            }
+            else {
+                let option = document.createElement("option");
+                option.value = testStatus[i];
+                option.textContent = testStatus[i];
+                displayDropdown.appendChild(option);
+            }
+
         }
     }
 })
