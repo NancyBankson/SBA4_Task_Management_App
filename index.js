@@ -11,6 +11,8 @@ let categoryButton = document.getElementById("category-button-el")
 let statusFilter = document.getElementById("filter-status-el")
 let statusButton = document.getElementById("status-button-el")
 const todaymilli = Date.now();
+let rowNum = 1;
+let colNum = 1;
 
 // For testing
 // let dummyObject = {
@@ -20,6 +22,7 @@ const todaymilli = Date.now();
 //     Status: "Complete",
 // }
 let taskDatabase = [];
+let taskNumber = 1;
 // For testing
 // taskDatabase.push(dummyObject);
 // console.log(taskDatabase);
@@ -27,24 +30,38 @@ let taskDatabase = [];
 // **********Event listeners**********************
 addButton.addEventListener("click", function () {
     let tableObject = {};
-    let newRow = document.createElement("tr")
-    taskTable.appendChild(newRow)
+    let newRow = document.createElement("tr");
+    taskTable.appendChild(newRow);
+
+    tableObject.Number = taskNumber;
+    let displayNumber = document.createElement("td");
+    displayNumber.innerText = tableObject.Number;
+    displayNumber.id = (rowNum, "+", colNum);
+    newRow.appendChild(displayNumber);
+    colNum++;
+    taskNumber++;
 
     tableObject.Task = newTask.value;
     let displayTask = document.createElement("td");
     displayTask.innerText = tableObject.Task;
+    displayTask.id = (rowNum, "+", colNum);
     newRow.appendChild(displayTask);
+    colNum++;
 
     tableObject.Category = newCategory.value;
     let displayCategory = document.createElement("td");
     displayCategory.innerText = tableObject.Category;
+    displayCategory.id = (rowNum, "+", colNum);
     newRow.appendChild(displayCategory);
+    colNum++;
 
     tableObject.Date = newDate.value;
     dateToCompare = new Date(tableObject.Date);
     let displayDate = document.createElement("td");
     displayDate.innerText = tableObject.Date;
+    displayDate.id = (rowNum, "+", colNum);
     newRow.appendChild(displayDate);
+    colNum++;
 
     tableObject.Status = newStatus.value;
     if ((dateToCompare <= todaymilli) && (tableObject.Status != "Completed")) {
@@ -53,7 +70,10 @@ addButton.addEventListener("click", function () {
     let displayStatus = document.createElement("td");
     // Removed with dropdown selector
     // displayStatus.innerText = tableObject.Status;
+    displayStatus.id = (rowNum, "+", colNum);
     newRow.appendChild(displayStatus);
+    rowNum++;
+    colNum = 1;
     let displayDropdown = document.createElement("select");
     // Replaced this section with selected attribute option
     // displayDropdown.innerHTML = '<option value="">--Status--</option><option value=" In Progress">In Progress</option><option value="Completed">Completed</option><option value="Overdue">Overdue</option>>';
@@ -139,12 +159,14 @@ addButton.addEventListener("click", function () {
 // )
 
 categoryButton.addEventListener("click", function () {
+    rowNum = 1;
     if (taskTable) {
         taskTable.innerHTML = "";
     }
     let tableObject = {};
     let compareCategory = categoryFilter.value;
     for (let i = 0; i < taskDatabase.length; i++) {
+        tableObject.Number = taskDatabase[i].Number;
         tableObject.Task = taskDatabase[i].Task;
         tableObject.Category = taskDatabase[i].Category;
         tableObject.Date = taskDatabase[i].Date;
@@ -153,20 +175,36 @@ categoryButton.addEventListener("click", function () {
             let newRow = document.createElement("tr")
             taskTable.appendChild(newRow);
 
+            let displayNumber = document.createElement("td");
+            displayNumber.innerText = tableObject.Number;
+            displayNumber.id = (rowNum, "+", colNum);
+            newRow.appendChild(displayNumber);
+            colNum++;
+
             let displayTask = document.createElement("td");
             displayTask.innerText = tableObject.Task;
+            displayTask.id = (rowNum, "+", colNum);
             newRow.appendChild(displayTask);
+            colNum++;
 
             let displayCategory = document.createElement("td");
             displayCategory.innerText = tableObject.Category;
+            displayCategory.id = (rowNum, "+", colNum);
             newRow.appendChild(displayCategory);
+            colNum++;
 
             let displayDate = document.createElement("td");
             displayDate.innerText = tableObject.Date;
+            displayDate.id = (rowNum, "+", colNum);
             newRow.appendChild(displayDate);
+            colNum++;
 
             let displayStatus = document.createElement("td");
+            displayStatus.id = (rowNum, "+", colNum);
             newRow.appendChild(displayStatus);
+            rowNum++;
+            colNum = 1;
+
             let displayDropdown = document.createElement("select");
             displayStatus.appendChild(displayDropdown);
             const testStatus = ["In Progress", "Completed", "Overdue"]
@@ -190,12 +228,14 @@ categoryButton.addEventListener("click", function () {
 })
 
 statusButton.addEventListener("click", function () {
+    rowNum = 1;
     if (taskTable) {
         taskTable.innerHTML = "";
     }
     let tableObject = {};
     let compareStatus = statusFilter.value;
     for (let i = 0; i < taskDatabase.length; i++) {
+        tableObject.Number = taskDatabase[i].Number;
         tableObject.Task = taskDatabase[i].Task;
         tableObject.Category = taskDatabase[i].Category;
         tableObject.Date = taskDatabase[i].Date;
@@ -204,20 +244,35 @@ statusButton.addEventListener("click", function () {
             let newRow = document.createElement("tr")
             taskTable.appendChild(newRow);
 
+            let displayNumber = document.createElement("td");
+            displayNumber.innerText = tableObject.Number;
+            displayNumber.id = (rowNum, "+", colNum);
+            newRow.appendChild(displayNumber);
+            colNum++;
+
             let displayTask = document.createElement("td");
             displayTask.innerText = tableObject.Task;
+            displayTask.id = (rowNum, "+", colNum);
             newRow.appendChild(displayTask);
+            colNum++;
 
             let displayCategory = document.createElement("td");
             displayCategory.innerText = tableObject.Category;
+            displayCategory.id = (rowNum, "+", colNum);
             newRow.appendChild(displayCategory);
+            colNum++;
 
             let displayDate = document.createElement("td");
             displayDate.innerText = tableObject.Date;
+            displayDate.id = (rowNum, "+", colNum);
             newRow.appendChild(displayDate);
+            colNum++;
 
             let displayStatus = document.createElement("td");
+            displayStatus.id = (rowNum, "+", colNum);
             newRow.appendChild(displayStatus);
+            rowNum++;
+            colNum = 1;
             let displayDropdown = document.createElement("select");
             displayStatus.appendChild(displayDropdown);
             const testStatus = ["In Progress", "Completed", "Overdue"]
@@ -239,3 +294,65 @@ statusButton.addEventListener("click", function () {
         }
     }
 })
+
+// taskTable.addEventListener("click", (event) => {
+//     if (event.target.closest("td").id) {
+//         const cellId = event.target.closest("td").id;
+//         let statusValue = document.getElementById(cellId);
+//         taskCell.setAttribute("style", "text-decoration: line-through;")
+//     }
+// })
+
+// taskTable.addEventListener("click"(event) => {
+//     const cellId = event.target.closest("td").id;
+//     let statusValue = document.getElementById(cellId);
+//     if(taskTable) {
+//         taskTable.innerHTML = "";
+//     }
+//     let tableObject = {};
+//     for(let i = 0; i<taskDatabase.length; i++) {
+//     tableObject.Task = taskDatabase[i].Task;
+//     tableObject.Category = taskDatabase[i].Category;
+//     tableObject.Date = taskDatabase[i].Date;
+//     tableObject.Status = taskDatabase[i].Status;
+
+
+//     let displayTask = document.createElement("td");
+//     displayTask.innerText = tableObject.Task;
+//     displayTask.id = (rowNum, "+", colNum);
+//     newRow.appendChild(displayTask);
+
+//     let displayCategory = document.createElement("td");
+//     displayCategory.innerText = tableObject.Category;
+//     displayCategory.id = (rowNum, "+", colNum);
+//     newRow.appendChild(displayCategory);
+
+//     let displayDate = document.createElement("td");
+//     displayDate.innerText = tableObject.Date;
+//     displayDate.id = (rowNum, "+", colNum);
+//     newRow.appendChild(displayDate);
+
+//     let displayStatus = document.createElement("td");
+//     displayStatus.id = (rowNum, "+", colNum);
+//     newRow.appendChild(displayStatus);
+//     let displayDropdown = document.createElement("select");
+//     displayStatus.appendChild(displayDropdown);
+//     const testStatus = ["In Progress", "Completed", "Overdue"]
+//     for (let i = 0; i < testStatus.length; i++) {
+//         if (testStatus[i] === tableObject.Status) {
+//             let option = document.createElement("option");
+//             option.value = testStatus[i];
+//             option.textContent = testStatus[i];
+//             option.setAttribute("selected", "selected")
+//             displayDropdown.appendChild(option);
+//         }
+//         else {
+//             let option = document.createElement("option");
+//             option.value = testStatus[i];
+//             option.textContent = testStatus[i];
+//             displayDropdown.appendChild(option);
+//         }
+//     }
+// }
+//     }
+// })
