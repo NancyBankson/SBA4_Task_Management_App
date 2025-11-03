@@ -40,3 +40,13 @@ button {
     border-radius: 20px;
     box-shadow: 2px 2px 4px #004377;
 }
+#update-container {
+    padding-top: 5px;
+}
+#update-number-el {
+    max-width: 80px;
+    margin: 0px 10px;
+}
+#update-status-el, #update-button-el {
+    margin: 0px 10px;
+}

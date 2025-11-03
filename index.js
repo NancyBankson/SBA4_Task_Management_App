@@ -59,7 +59,8 @@ addButton.addEventListener("click", function () {
     colNum++;
 
     tableObject.Date = newDate.value;
-    dateToCompare = new Date(tableObject.Date);
+    let dateToCompare = new Date(tableObject.Date);
+    let dateMilli = dateToCompare.getTime();
     let displayDate = document.createElement("td");
     displayDate.innerText = tableObject.Date;
     displayDate.id = (rowNum, "+", colNum);
@@ -67,7 +68,7 @@ addButton.addEventListener("click", function () {
     colNum++;
 
     tableObject.Status = newStatus.value;
-    if ((dateToCompare <= todaymilli) && (tableObject.Status != "Completed")) {
+    if ((dateMilli <= todaymilli) && (tableObject.Status != "Completed")) {
         tableObject.Status = "Overdue";
     }
     let displayStatus = document.createElement("td");
@@ -97,7 +98,7 @@ addButton.addEventListener("click", function () {
             displayDropdown.appendChild(option);
         }
     }
-    // Removed with dropdown section
+    // Removed with additon of dropdown section
     // displayDropdown.innerText = tableObject.Status;
     taskDatabase.push(tableObject);
     newTask.value = "";
@@ -307,6 +308,11 @@ updateButton.addEventListener("click", function () {
     let targetTaskNumber = parseInt(updateNumber.value);
     targetTaskNumber--;
     taskDatabase[targetTaskNumber].Status = updateStatus.value;
+    let dateToCompare = new Date(taskDatabase[targetTaskNumber].Date);
+    let dateMilli = dateToCompare.getTime();
+    if ((dateMilli <= todaymilli) && (updateStatus.value != "Completed")) {
+        taskDatabase[targetTaskNumber].Status = "Overdue";
+    }
     for (let i = 0; i < taskDatabase.length; i++) {
         tableObject.Number = taskDatabase[i].Number;
         tableObject.Task = taskDatabase[i].Task;
@@ -366,66 +372,6 @@ updateButton.addEventListener("click", function () {
 
         }
     }
+    updateNumber.value = "";
+    updateStatus.value = "";
 })
-
-// taskTable.addEventListener("click", (event) => {
-//     if (event.target.closest("td").id) {
-//         const cellId = event.target.closest("td").id;
-//         let statusValue = document.getElementById(cellId);
-//         taskCell.setAttribute("style", "text-decoration: line-through;")
-//     }
-// })
-
-// taskTable.addEventListener("click"(event) => {
-//     const cellId = event.target.closest("td").id;
-//     let statusValue = document.getElementById(cellId);
-//     if(taskTable) {
-//         taskTable.innerHTML = "";
-//     }
-//     let tableObject = {};
-//     for(let i = 0; i<taskDatabase.length; i++) {
-//     tableObject.Task = taskDatabase[i].Task;
-//     tableObject.Category = taskDatabase[i].Category;
-//     tableObject.Date = taskDatabase[i].Date;
-//     tableObject.Status = taskDatabase[i].Status;
-
-
-//     let displayTask = document.createElement("td");
-//     displayTask.innerText = tableObject.Task;
-//     displayTask.id = (rowNum, "+", colNum);
-//     newRow.appendChild(displayTask);
-
-//     let displayCategory = document.createElement("td");
-//     displayCategory.innerText = tableObject.Category;
-//     displayCategory.id = (rowNum, "+", colNum);
-//     newRow.appendChild(displayCategory);
-
-//     let displayDate = document.createElement("td");
-//     displayDate.innerText = tableObject.Date;
-//     displayDate.id = (rowNum, "+", colNum);
-//     newRow.appendChild(displayDate);
-
-//     let displayStatus = document.createElement("td");
-//     displayStatus.id = (rowNum, "+", colNum);
-//     newRow.appendChild(displayStatus);
-//     let displayDropdown = document.createElement("select");
-//     displayStatus.appendChild(displayDropdown);
-//     const testStatus = ["In Progress", "Completed", "Overdue"]
-//     for (let i = 0; i < testStatus.length; i++) {
-//         if (testStatus[i] === tableObject.Status) {
-//             let option = document.createElement("option");
-//             option.value = testStatus[i];
-//             option.textContent = testStatus[i];
-//             option.setAttribute("selected", "selected")
-//             displayDropdown.appendChild(option);
-//         }
-//         else {
-//             let option = document.createElement("option");
-//             option.value = testStatus[i];
-//             option.textContent = testStatus[i];
-//             displayDropdown.appendChild(option);
-//         }
-//     }
-// }
-//     }
-// })
